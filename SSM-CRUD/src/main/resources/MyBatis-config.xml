@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+	
+	<!-- 设置set属性 -->
+ <!-- <settings>
+ 	开启二级缓存
+	 <setting name="cacheEnabled" value="true"/>
+		配置开启懒加载
+	 	<setting name="lazyLoadingEnabled" value="true"/>
+		 <setting name="aggressiveLazyLoading" value="false"/>  
+	</settings>  -->
+	
+  <plugins>
+  	<plugin interceptor="com.github.pagehelper.PageInterceptor">
+  		<!-- 设置过后分页的当前页不会小于当前分页的最小值也不会大于最大的值 
+  			若传过来的当前页大于最大的页数，会默认使用最大的页数，
+  			若传过来的当前页小于最小的页数，会默认使用最小的页数-->
+  		 <property name="reasonable" value="true"/>
+  	</plugin>
+  </plugins> 
+  
+  <!-- 支持多数据厂商，type="DB_VENDOR"：数据可厂商的标识，不通的数据库厂商有不通的标识，Oracle，MySQL。。。 
+	得到数据库厂商的标识，mybatis就会根据具体的数据库厂商的标识执行不同环境。mapper映射中select上
+	databaseId="mysql"，具体使用哪个数据库厂商。-->
+	<databaseIdProvider type="DB_VENDOR">
+		<!-- 为具体的厂商标识起别名 -->
+		<property name="MySQL" value="mysql"/>
+	</databaseIdProvider>
+</configuration>
